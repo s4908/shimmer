@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Shimmer</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="topBanner">
+        <%= link_to root_path do %>
+          <div class="logo" style="display: inline-block">
+            <h1 style="display: inline-block">Shimmer<span> discover fasion online</span></h1>
+            <!-- <p>discover fasion online</p> -->
+          </div>
+        <% end %>
+        <div class="topLeft">
+          <% if current_user%>
+            Hi!, <%= current_user.name %> 
+            <%= link_to("登出", destroy_user_session_path, :method => :delete ) %>
+          <% elsif %>
+            <%= link_to("登入", new_user_session_path ) %>
+          <% end%>
+        </div>
+        <div class="left" style="display: inline-block">
+          <%= image_tag "FB-f-Logo__blue_100.png", width: "20px", height: "20px" %> facebook
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <p>
+    <div id="nav">
+      <ul class="main">
+         <li><a href="/collections/living" alt="Living">Living</a></li>
+         <li><a href="/collections/accessories" class="active" alt="Accessories">Accessories</a></li>
+         <li><a href="/collections/paper" alt="Paper">Paper</a></li>          
+         <li><a href="/collections/art" alt="Art">Art</a></li>          
+         <li><a href="/collections/sale" alt="Sale">Sale</a></li>          
+         <li class="last"><a href="/collections/new-arrivals" alt="New">New</a></li>
+      </ul>
+    </div>
+  </div>
+
+<!--   <div class="row" style="padding: 0 10px 0 10px;">
+    <div class="col-lg-12">
+        <ul class="leftNav">
+          <li>New</li>
+          <li>Shirt</li>
+          <li>Dress</li>
+          <li>Skirt</li>
+          <li>Pants</li>
+          <li>Shoes</li>
+        </ul>
+    </div>
+  </div>
+
+  <div class="row" style="padding: 0 10px 0 10px;">
+    <hr>
+  </div> -->
+
+
+  <%= yield %>
+
+</div>
+<%= yield :footer%>
+</body>
+</html>
+
