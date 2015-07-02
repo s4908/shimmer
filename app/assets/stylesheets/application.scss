@@ -151,11 +151,15 @@
   }
   .topBanner .left {
     position: absolute;
-    right: 200px;
+    right: 20px;
     bottom: 20px;
   }
   .topBanner .topLeft {
     position: absolute;
     right: 20px;
     top: 10px;
+  }
+  .topBanner .cart {
+    display: inline-block;
+    margin-left: 20px;
   }

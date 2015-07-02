@@ -18,11 +18,13 @@
   <div class="col-lg-5 col-lg-offset-1">
     <div class="productInfo">
     <div class="title"><%= @product.title %></div>
-    <div class="price"><%= number_to_currency(@product.price, precision: 0) %></div>
-    <input class="form-control">
+    <div class="price"><%= number_to_currency(@product.price, precision: 0) %></div><br>
+    數量：
+    <input class="form-control" type="number" value=1 min=1 max=3 style="width:70px; display:inline;">
     <input class="btn btn-default" type="button" value="加入購物籃">
     <br><hr>
     <%= @product.description %>
+    <%= Faker::Lorem.sentence(30) %>
     <hr>
     More Image<br>
     <% @product.product_attachments.where(:image_type => 'other').each do |i| %>

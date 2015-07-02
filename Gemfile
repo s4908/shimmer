@@ -60,3 +60,5 @@ gem 'rmagick'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+gem 'faker'

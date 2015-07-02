@@ -13,6 +13,7 @@
     height: 100%;
     vertical-align: middle;
   }
+  
   .imageHolder > .title{
     color: #000;
   }
@@ -26,7 +27,7 @@
 </style>
 
 <br>
-<p id="notice"><%= notice %></p>
+
 <div class="row">
 
   <% @products.includes(:product_attachments).each do |product| %>
