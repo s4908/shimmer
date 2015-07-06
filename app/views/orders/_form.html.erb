@@ -1,0 +1,13 @@
+<%= render partial: "progress_bar" %>
+<div class="row">
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2">
+    <br>共 <%= current_order.quantity%> 件商品 <br><br>
+    <%= simple_form_for '' do |f| %>
+      <%= f.input :name, label: '收件人姓名'  %>
+      <%= f.input :phone_number, label: '聯絡電話' %>
+      <%= f.input :delivery_address, label: '收件地址' %>
+      <%= f.input :note, as: :text, label: '備註' %>
+      <%= f.button :submit, "確認訂單", class:"btn-primary", input_html: {confirm: "確認訂單？"} %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+// Place all the styles related to the orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#orderTable {
+  font-family: Quicksand, 微軟正黑體;
+}
+
+#orderTable th {
+  vertical-align: middle;
+  font-size: 20px;
+  
+}
+
+#orderTable td {
+  vertical-align: middle;
+  font-size: 18px;
+}
+#orderTable > tbody td:nth-child(1) {
+  text-align: center;
+  
+}
+
+.total {
+  font-family: Quicksand, 微軟正黑體;
+  font-size: 20px;
+}

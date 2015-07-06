@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628162557) do
+ActiveRecord::Schema.define(version: 20150704153655) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -28,6 +28,29 @@ ActiveRecord::Schema.define(version: 20150628162557) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "product_id", limit: 4
+    t.integer  "price",      limit: 4
+    t.integer  "quantity",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "status",           limit: 255
+    t.string   "delivery_method",  limit: 255
+    t.string   "delivery_address", limit: 255
+    t.string   "phone",            limit: 255
+    t.text     "note",             limit: 65535
+    t.string   "name",             limit: 255
+  end
 
   create_table "product_attachments", force: :cascade do |t|
     t.integer  "product_id", limit: 4
@@ -66,10 +89,15 @@ ActiveRecord::Schema.define(version: 20150628162557) do
     t.string   "unconfirmed_email",      limit: 255
     t.string   "uid",                    limit: 255
     t.string   "provider",               limit: 255
+    t.string   "delivery_method",        limit: 255
+    t.string   "delivery_address",       limit: 255
+    t.string   "phone",                  limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "identities", "users"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
 end

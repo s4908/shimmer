@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  get 'order_items/create'
+
+  get 'order_items/destroy'
+
+  # resources :orders
+  resources :orders, :only => [:index] do
+    get :checkout, :on => :collection
+  end
+    
+
+  resources :order_items
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: "products#index"
 

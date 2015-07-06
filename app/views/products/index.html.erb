@@ -1,12 +1,15 @@
 <style>
   .imageHolder {
-    width: 100%;
-    height: 300px;
+    width: auto;
+    height: 280px;
     text-align: center;
+    -border: black 1px solid;
+    
   }
   .imageHolder img {
     vertical-align: middle;
     max-width: 100%;
+    max-height: 250px;
   }
   .imageHolder .helper{
     display: inline-block;
@@ -14,35 +17,38 @@
     vertical-align: middle;
   }
   
-  .imageHolder > .title{
+  .productTitle{
     color: #000;
+    text-align: center;
   }
-  .imageHolder > .price{
+  .productImage{
     font-family: monospace, sans-serif;
-  }
-  a:hover {
-    text-decoration: none;
+    text-align: center;
   }
 
 </style>
 
 <br>
 
-<div class="row">
 
-  <% @products.includes(:product_attachments).each do |product| %>
-    <div class="col-lg-3">
-      <%= link_to product_path(product) do %>
-        <div class="imageHolder">
-          <div class="helper"></div>
-          <%= image_tag product.product_attachments.first.image_url(:thumb) %><br>
-          <div class="title"> <%= product.title %> </div>
-          <div class="price"> <%= number_to_currency(product.price, precision: 0) %> </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+
+<% @products.includes(:product_attachments).each_slice(4) do |slice| %>
+  <div class="row" style="margin-bottom: 20px;">
+    <% slice.each do |product| %>
+      <div class="col-lg-3">
+        <%= link_to product_path(product) do %>
+          <div class="imageHolder">
+            <div class="helper"></div>
+            <%= image_tag product.product_attachments.first.image_url(:thumb) %><br>
+          </div>
+          <div class="productTitle"> <%= product.title %> </div>
+          <div class="productImage"> <%= number_to_currency(product.price, precision: 0) %> </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 

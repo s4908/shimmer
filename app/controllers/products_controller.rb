@@ -4,12 +4,13 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.all.order('id desc')
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    @order_item = current_order.order_items.new
   end
 
   # GET /products/new
@@ -28,14 +29,16 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     respond_to do |format|
-      if @product.save
+      if @product.save!
         # Save product main image
         main_image = params[:product_attachments][:main_image]
         @product_attachment = @product.product_attachments.create!(:image => main_image, :image_type => 'main',:product_id => @product.id)
 
         # Save product other images
-        params[:product_attachments][:other_images].each do |a|
-          @product_attachment = @product.product_attachments.create!(:image => a, :image_type => 'other', :product_id => @product.id)
+        if !params[:product_attachments][:other_images].blank?
+          params[:product_attachments][:other_images].each do |a|
+            @product_attachment = @product.product_attachments.create!(:image => a, :image_type => 'other', :product_id => @product.id)
+          end
         end
 
         format.html { redirect_to @product, notice: 'Product was successfully created.' }

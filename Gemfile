@@ -61,4 +61,5 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'simple_form'
 gem 'faker'

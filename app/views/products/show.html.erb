@@ -8,75 +8,56 @@
     font-size: 4em;
     font-weight: bold;
   }
+  .mainImage {
+    width: 100%;
+  }
+  .moreImage {
+    max-height: 120px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
 </style>
 
 <div class="row" style="margin-top: 20px">
   <div class="col-lg-5 ">
-    <%= image_tag @product.product_attachments.where(:image_type => 'main').first.image_url, :'width' => '100%' %>
+    <%= image_tag @product.product_attachments.where(:image_type => 'main').first.image_url, class: 'mainImage' %>
   </div>
 
   <div class="col-lg-5 col-lg-offset-1">
     <div class="productInfo">
     <div class="title"><%= @product.title %></div>
+      
+    
     <div class="price"><%= number_to_currency(@product.price, precision: 0) %></div><br>
-    數量：
-    <input class="form-control" type="number" value=1 min=1 max=3 style="width:70px; display:inline;">
-    <input class="btn btn-default" type="button" value="加入購物籃">
+
+
+    <%= simple_form_for @order_item, html: { :class => 'form-inline' } do |f| %>
+      <%= f.input :quantity, as: :integer, label: "數量： ", input_html: { value: 1, max: 3, min: 1, style:"width:70px;"  }  %>
+      <%= f.input :product_id, as: :hidden, input_html: {value: @product.id}%>
+      <%= f.button :submit, "加到購物籃", input_html: { text: 1},  %>
+    <% end %>
+
     <br><hr>
     <%= @product.description %>
     <%= Faker::Lorem.sentence(30) %>
     <hr>
-    More Image<br>
-    <% @product.product_attachments.where(:image_type => 'other').each do |i| %>
-      <%= image_tag i.image_url(:thumb) %>
+    <strong>更多圖片</strong><br><br>
+    <% @product.product_attachments.each do |i| %>
+      <%= image_tag i.image_url(:thumb), class: 'moreImage', "ori-image" => i.image_url %>
     <% end %>
   </div>
 
 </div>
 
-
+<script>
+$('.moreImage').on("click", function(e){
+  oriImage = $(this).attr('ori-image');
+  $('.mainImage').attr('src', oriImage);
+});
+</script>
 
 <%= content_for :footer do %>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <div class="col-lg-5">
-      <div class="productTitle"><h3>正韓質感運動鞋<%= @product.title %></h3></div><br>
-      <%= image_tag "https://scontent-tpe.xx.fbcdn.net/hphotos-xfa1/t31.0-8/11155099_833089253411203_350078661803195758_o.jpg", :width => "70%" %>
-    </div>
-
-
-
-<p id="notice"><%= notice %></p>
-<code>SDFS</code>
-<p>
-  <strong>Title:</strong>
-  <%= @product.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @product.category_id %>
-</p>
-
-<p>
-  <strong>Main Image:</strong> <br>
-  <%= image_tag @product.product_attachments.where(:image_type => 'main').first.image_url %>
-</p>
-
-<p>
-  <strong>Other Image:</strong> <br>
-  <% @product.product_attachments.where(:image_type => 'other').each do |i| %>
-    <%= image_tag i.image_url(:thumb) %>
-  <% end %>
-
-</p>
-
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<br><br><br><br><br><br>
 <% end %>
+
+
