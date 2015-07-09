@@ -10,11 +10,6 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @categories = Category.find(params[:id])
-    ActiveRecord::Base.__send__(:sanitize_sql_array, [%Q{
-      SELECT "likes"."name", "likes"."uid", COUNT(*) as "count" 
-      FROM "likes" WHERE "likes"."statistic_id" = ? GROUP BY "likes"."name", "likes"."uid" 
-    }, 1])
   end
 
   # GET /categories/new
@@ -24,6 +19,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+
   end
 
   # POST /categories
@@ -66,10 +62,18 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def new_arrival
+    @category = Category.new
+    def @category.products
+      Product.all
+    end
+    render :show
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.where(:title => params[:category_name]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

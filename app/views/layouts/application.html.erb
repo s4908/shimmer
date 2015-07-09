@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shimmer</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -36,7 +36,7 @@
             <%= link_to("登入", new_user_session_path ) %>
           <% end%>
           <div class="cart">
-            <%= link_to orders_path, style: 'color: black' do %>
+            <%= link_to order_path, style: 'color: black' do %>
               <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
               購物車(<%= current_order.quantity %>) 結賬
             <% end %>
@@ -53,12 +53,12 @@
     <p>
     <div id="nav">
       <ul class="main">
-         <li><a href="/collections/living" alt="Living">Living</a></li>
-         <li><a href="/collections/accessories" class="active" alt="Accessories">Accessories</a></li>
-         <li><a href="/collections/paper" alt="Paper">Paper</a></li>          
-         <li><a href="/collections/art" alt="Art">Art</a></li>          
-         <li><a href="/collections/sale" alt="Sale">Sale</a></li>          
-         <li class="last"><a href="/collections/new-arrivals" alt="New">New</a></li>
+         <li><a href="/categories/new_arrival" alt="New Arrval" <%= current_link_class(new_arrival_categories_path) %> >本月新貨</a></li>
+         <li><a href="/categories/Tops" alt="Accessories" <%= current_link_class(category_path("Tops")) %>>上衣</a></li>
+         <li><a href="/categories/paper" alt="Paper" <%= current_link_class(category_path("paper")) %> >Paper</a></li>          
+         <li><a href="/categories/art" alt="Art" <%= current_link_class(category_path("Art")) %> >Art</a></li>          
+         <li><a href="/categories/sale" alt="Sale" <%= current_link_class(category_path("sale")) %> >聯絡小幫手</a></li>          
+         <li class="last"><a href="/categories/about_us" alt="New" <%= current_link_class(category_path("about_us")) %>>關於我們</a></li>
       </ul>
     </div>
   </div>

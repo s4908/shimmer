@@ -1,23 +1,30 @@
 Rails.application.routes.draw do
-  get 'order_items/create'
+  root to: "categories#show", category_name: 'Tops'
 
-  get 'order_items/destroy'
 
-  # resources :orders
-  resources :orders, :only => [:index] do
+
+
+  resource :order, :only => [:show] do
     get :checkout, :on => :collection
+    get :confirmed, :on => :collection
   end
     
 
   resources :order_items
+    # get 'order_items/create', :on => :collection
+    # get 'order_items/destroy', :on => :collection
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
-  root to: "products#index"
+  
 
   resources :product_attachments
 
   resources :products
 
-  resources :categories
+  resources :categories, except: [:show] do
+    get :new_arrival, :on => :collection    
+    get ':category_name' , action: :show, :on => :collection
+    
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

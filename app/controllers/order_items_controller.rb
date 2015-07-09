@@ -12,7 +12,7 @@ class OrderItemsController < ApplicationController
   def destroy
     order = current_order
     order.order_items.find(params[:id]).destroy
-    redirect_to orders_path
+    redirect_to order_path
   end
 
 private

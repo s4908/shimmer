@@ -3,12 +3,12 @@ class OrdersController < ApplicationController
   attr_reader :STATUS
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
-  # GET /orders
-  def index
+
+  def show
     @order = current_order
   end
 
-  # POST /orders
+  # POST /order
   def create
     @order = Order.new(order_params)
 
@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = current_order
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

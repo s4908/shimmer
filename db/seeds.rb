@@ -14,13 +14,13 @@
   )
 
   attachment = product.product_attachments.create(
-    image: open("http://lorempixel.com/600/800/fashion/"),
+    image: open("http://lorempixel.com/600/600/fashion/"),
     image_type: "main"
   )
 
   3.times do
     product.product_attachments.create(
-      image: open("http://lorempixel.com/600/800/fashion/"),
+      image: open("http://lorempixel.com/600/600/fashion/"),
       image_type: "other"
     )
   end

@@ -1,37 +1,79 @@
-<p id="notice"><%= notice %></p>
+<style>
+  .imageHolder {
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    -border: black 1px solid;
 
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
-</p>
+    margin: 0 auto;
+    
+  }
+  .imageHolder img {
+    vertical-align: middle;
+    max-width: 98%;
+    margin: 0;
+    max-height: 300px;
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+  }
+  .imageHolder .helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    background-color: red;
+  }
+  
+  .productTitle{
+    color: #000;
+    text-align: center;
+  }
+  .productPrice{
+    font-family: monospace, sans-serif;
+    text-align: center;
+  }
 
-<p>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+</style>
 
-  <tbody>
-    <% @category.products.each do |product| %>
-      <tr>
-        <td><%= product.title %></td>
-        <td><%= product.description %></td>
-        <td><%= product.category_id %></td>
-        <% binding.pry %>
-        <td><%= image_tag product.image_url(:thumb).to_s %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <% if  @category %>
+  <!--   <% @category.products.includes(:product_attachments).reverse.each_slice(4) do |slice| %>
+      <div class="row" style="margin-bottom: 20px;">
+        <% slice.each do |product| %>
+          <div class="col-lg-3">
+            <%= link_to product_path(product) do %>
+              <div class="imageHolder">
+                <div class="helper"></div>
+                <%= image_tag product.product_attachments.first.image_url(:thumb) %><br>
+              </div>
+              <div class="productTitle"> <%= product.title %> </div>
+              <div class="productImage"> <%= number_to_currency(product.price, precision: 0) %> </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %> -->
+    <div class="row" style="margin-bottom: 20px;">
+      <% @category.products.includes(:product_attachments).reverse.each do |product| %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-bottom: 20px">
+          <%= link_to product_path(product) do %>
+
+              <div class="imageHolder">
+                <div class="helper"></div>
+                <%= image_tag product.product_attachments.first.image_url(:thumb)  %><br>
+              </div>
+              <div class="productTitle"> <%= product.title.truncate(30) %> </div>
+              <div class="productPrice"> <%= number_to_currency(product.price, precision: 0) %> </div>
+
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    此分類沒有商品<br>
+  <% end %>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<%= link_to 'New Product', new_product_path %>
