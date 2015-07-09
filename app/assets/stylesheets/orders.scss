@@ -23,4 +23,8 @@
 .total {
   font-family: Quicksand, 微軟正黑體;
   font-size: 20px;
+
+  td:nth-child(1) {
+    padding-right: 20px;
+  }
 }

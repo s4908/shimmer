@@ -33,18 +33,23 @@
       </tbody>
     </table>
     <hr>
-    <div class="total" style="width: 300px; position: absolute; right: 0px;">
-      <dl class="dl-horizontal"  >
-        <dt>小計：</dt>
-        <dd><%= number_to_currency(@order.sub_total, precision: 0) %></dd>
-        <dt>運費：</dt>
-        <dd><%= number_to_currency(@order.shipping_fee, precision: 0) %></dd>
-        <dt>總計：</dt>
-        <dd><%= number_to_currency(@order.grand_total, precision: 0) %></dd>
-      </dl>
-    </div>
-
 </div>
+    <div class="row" >
+      <table class=" pull-right total">
+        <tr>
+          <td><strong>小計：</strong></td>
+          <td><%= number_to_currency(@order.sub_total, precision: 0) %></td>
+        </tr>
+        <tr>
+          <td><strong>運費：</strong></td>
+          <td><%= number_to_currency(@order.shipping_fee, precision: 0) %></td>
+        </tr>
+        <tr>
+          <td><strong>總計：</strong></td>
+          <td><%= number_to_currency(@order.grand_total, precision: 0) %></td>
+        </tr>
+      </table>
+    </div>
 <br>  
 
   <%= link_to checkout_order_path do %>

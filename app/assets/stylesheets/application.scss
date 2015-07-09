@@ -31,6 +31,7 @@
   .logo{
       margin-bottom: 0px;
       margin-top: 20px;
+      display: inline-block;
   }
 
   .logo h1,
@@ -51,6 +52,9 @@
       color: #aaa;
       font-weight: 100;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      @media (max-width: 768px) {
+          display: none;
+      }
   }
 
   .logo h1 a,
@@ -74,6 +78,7 @@
     font-size: 25px;
     padding-left: 0px;
     color: #ccc;
+    
   }
 
   .productTitle h3 {
@@ -123,7 +128,7 @@
     top: 138px;
   }
   #nav ul.main {
-    width: 100%;
+    
     border-bottom: 3px solid #E6E6E6;
     height: 40px;
     position: relative;
@@ -155,6 +160,54 @@
     float: none;
   }
 
+  /* newNav */
+  #newNav {
+    font-family: Quicksand, Glegoo, Georgia;
+    width: 100%;
+
+  }
+  #newNav ul.main {
+    width: 100%;
+    border-bottom: 0px;
+    display: block;
+    margin-bottom: 3px;
+    @media (min-width: 768px) {
+        border-bottom: 3px solid #E6E6E6;
+    }
+  }
+
+  #newNav ul.main li {
+    display: block;
+    position: relative;
+    margin: 0 0 0 30px;
+    border-bottom: 3px solid #E6E6E6;
+    margin-bottom: -3px;  
+    @media (min-width: 768px) {
+        float: left;
+    }
+  }
+
+
+  #newNav ul.main li a {
+    font-size: 21px;
+    color: #5f5f5f;
+    text-transform: lowercase;
+  }
+  #newNav ul.main li a:hover,
+  #newNav ul.main li a.active {
+    color: #99cccc;
+  }
+  #newNav ul.main li a.active {
+    margin-bottom: -3px;  
+    border-bottom: 3px solid #666;
+  }
+  #newNav ul.main li.last {
+    right: 0;
+    margin: 0;
+    
+  }
+
+
   .topBanner {
   }
   .topBanner .left {
@@ -170,4 +223,18 @@
   .topBanner .cart {
     display: inline-block;
     margin-left: 20px;
+  }
+  .topLeft {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+  }
+  .cart {
+      display: inline-block;
+      margin-left: 20px;
+  }
+
+  @font-face {
+    font-family: myfont;
+    src: url('myfont.wof') format('truetype');
   }
