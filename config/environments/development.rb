@@ -42,7 +42,7 @@ Rails.application.configure do
   # Email
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  # config.action_mailer.default_url_options = { host: config.app_domain }
+  config.action_mailer.default_url_options = { host: "ec2-52-25-44-105.us-west-2.compute.amazonaws.com" }
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com', 
     port: '587',
@@ -50,6 +50,7 @@ Rails.application.configure do
     user_name: ENV['gmail'],
     password: ENV['gmail_pwd'],
     authentication: :plain,
-    domain: 'somedomain.com'
+    domain: 'somedomain.com',
+
   }
 end
