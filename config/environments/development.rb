@@ -50,7 +50,7 @@ Rails.application.configure do
     user_name: ENV['gmail'],
     password: ENV['gmail_pwd'],
     authentication: :plain,
-    domain: 'somedomain.com',
+    domain: 'somedomain.com'
 
   }
 end
