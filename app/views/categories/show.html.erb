@@ -27,7 +27,6 @@
     text-align: center;
   }
   .productPrice{
-    font-family: monospace, sans-serif;
     text-align: center;
   }
 
@@ -60,7 +59,7 @@
                 <div class="helper"></div>
                 <%= image_tag product.product_attachments.first.image_url(:thumb)  %><br>
               </div>
-              <div class="productTitle"> <%= product.title.truncate(30) %> </div>
+              <div class="productTitle"> <%= product.title.truncate(28) %> </div>
               <div class="productPrice"> <%= number_to_currency(product.price, precision: 0) %> </div>
 
           <% end %>

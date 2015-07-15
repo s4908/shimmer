@@ -5,8 +5,11 @@ Rails.application.routes.draw do
 
 
   resource :order, :only => [:show] do
-    get :checkout, :on => :collection
-    get :confirmed, :on => :collection
+    collection do
+      get :fill_in_information
+      patch :checkout
+      get :confirmed
+    end
   end
     
 
@@ -23,8 +26,8 @@ Rails.application.routes.draw do
   resources :categories, except: [:show] do
     get :new_arrival, :on => :collection    
     get ':category_name' , action: :show, :on => :collection
-    
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

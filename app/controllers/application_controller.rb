@@ -12,4 +12,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def reset_order!
+    session[:order_id] = nil
+  end
+
+  def is_admin?
+    current_user.group == 'admin'
+  end
+
 end

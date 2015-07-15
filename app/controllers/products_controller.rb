@@ -1,34 +1,28 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
-  # GET /products
-  # GET /products.json
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create, :new]
+  before_action :is_admin?, only: [:edit, :update, :destroy, :create, :new]
+  
+  
   def index
     @products = Product.all.order('id desc')
   end
 
-  # GET /products/1
-  # GET /products/1.json
   def show
     @order_item = current_order.order_items.new
   end
 
-  # GET /products/new
   def new
     @product = Product.new
     @product.category_id = params[:category_id]
   end
 
-  # GET /products/1/edit
   def edit
   end
 
-  # POST /products
-  # POST /products.json
   def create
     @product = Product.new(product_params)
-
-    respond_to do |format|
+    Product.transaction do
       if @product.save!
         # Save product main image
         main_image = params[:product_attachments][:main_image]
@@ -41,31 +35,25 @@ class ProductsController < ApplicationController
           end
         end
 
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
+        redirect_to @product, notice: 'Product was successfully created.' 
       else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        render :new 
       end
     end
+
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
+        redirect_to @product, notice: 'Product was successfully updated.'
+
       else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        render :edit
       end
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
     respond_to do |format|
@@ -75,13 +63,12 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:title, :description, :price, :category_id)
     end
+
 end
