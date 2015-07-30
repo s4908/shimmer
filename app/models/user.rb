@@ -4,13 +4,13 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, #:confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
     
 
   belongs_to :user
   # validates_presence_of :uid, :provider
-  validates_uniqueness_of :uid, :scope => :provider
+  validates_uniqueness_of :uid, :scope => :provider, :allow_blank => true
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   
   def self.from_omniauth(auth)

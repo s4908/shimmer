@@ -12,9 +12,6 @@
   <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
   <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-  <style type="text/css">
-
-  </style>
 
 </head>
 <body>
@@ -45,48 +42,7 @@
 </nav><!-- /.navbar -->
 
 <div class="container">
-
-<!--       <div class="topBanner">
-        <%= link_to root_path do %>
-          <div class="logo" style="display: inline-block">
-            <h1 style="display: inline-block">Shimmer<span> discover fasion online</span></h1>
-          </div>
-        <% end %>
-        <div class="topLeft">
-          <% if current_user %>
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= current_user.name %>
-            <%= link_to("登出", destroy_user_session_path, :method => :delete ) %>
-          <% elsif %>
-            <%= link_to("登入", new_user_session_path ) %>
-          <% end%>
-          <div class="cart">
-            <%= link_to order_path, style: 'color: black' do %>
-              <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-              購物車(<%= current_order.quantity %>) 結賬
-            <% end %>
-          </div>
-        </div>
-        <div class="left" style="display: inline-block">
-          <%= image_tag "FB-f-Logo__blue_100.png", width: "20px", height: "20px" %> facebook
-        </div>
-      </div> -->
-
-
-<!--   <div class="row">
-    <div id="nav">
-      <ul class="main">
-         <li><a href="/categories/new_arrival" alt="New Arrval" <%= current_link_class(new_arrival_categories_path) %> >本月新貨</a></li>
-         <li><a href="/categories/Tops" alt="Accessories" <%= current_link_class(category_path("Tops")) %>>上衣</a></li>
-         <li><a href="/categories/paper" alt="Paper" <%= current_link_class(category_path("paper")) %> >Paper</a></li>          
-         <li><a href="/categories/art" alt="Art" <%= current_link_class(category_path("Art")) %> >Art</a></li>          
-         <li><a href="/categories/sale" alt="Sale" <%= current_link_class(category_path("sale")) %> >聯絡小幫手</a></li>          
-         <li class="last"><a href="/categories/about_us" alt="New" <%= current_link_class(category_path("about_us")) %>>關於我們</a></li>
-      </ul>
-    </div>
-  </div> -->
-
     <nav class="navbar">
-
         <div class="navbar-header" >
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#newNav" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -100,33 +56,16 @@
             <li><a href="/categories/new_arrival" alt="New Arrval" <%= current_link_class(new_arrival_categories_path) %> >本月新貨</a></li>
             <li><a href="/categories/Tops"  <%= current_link_class(category_path("Tops")) %>>上衣</a></li>     
             <li><a href="/categories/Test"  <%= current_link_class(category_path("Test")) %> >褲子</a></li>          
-            <li><a href="/categories/sale" <%= current_link_class(category_path("sale")) %> >聯絡小幫手</a></li>          
-            <li><a href="/categories/about_us"  <%= current_link_class(category_path("about_us")) %>>關於我們</a></li>
+            <li><a href="#" >聯絡小幫手</a></li>          
+            <li><a href="/about_us"  <%= current_link_class(about_us_path) %>>關於我們</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
 
     </nav><!-- /.navbar -->
-
   <p class="notice"></p>
   <span class="label label-info"><%= flash[:notice] %></span>
+  <span class="label label-danger"><%= flash[:alert] %></span>
   <span class="label label-danger"><%= flash[:error] %></span>
-<!--   <div class="row" style="padding: 0 10px 0 10px;">
-    <div class="col-lg-12">
-        <ul class="leftNav">
-          <li>New</li>
-          <li>Shirt</li>
-          <li>Dress</li>
-          <li>Skirt</li>
-          <li>Pants</li>
-          <li>Shoes</li>
-        </ul>
-    </div>
-  </div>
-
-  <div class="row" style="padding: 0 10px 0 10px;">
-    <hr>
-  </div> -->
-
 
   <%= yield %>
 

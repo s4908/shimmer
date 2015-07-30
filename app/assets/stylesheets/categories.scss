@@ -1,3 +1,33 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+  .imageHolder {
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    -border: black 1px solid;
+
+    margin: 0 auto;
+    
+  }
+  .imageHolder img {
+    vertical-align: middle;
+    max-width: 98%;
+    margin: 0;
+    max-height: 300px;
+
+  }
+  .imageHolder .helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    background-color: red;
+  }
+  
+  .productTitle{
+    color: #000;
+    text-align: center;
+  }
+  .productPrice{
+    text-align: center;
+  }

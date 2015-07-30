@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root to: "categories#show", category_name: 'Tops'
 
-
-
+  get '/about_us' => 'shimmer#about_us'
 
   resource :order, :only => [:show] do
     collection do

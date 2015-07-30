@@ -1,3 +1,19 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+  .productInfo > .title {
+     font-size: 2em;
+  }
+  .productInfo > .price {
+    font-family: 'Roboto',微軟正黑體,Helvetica,sans-serif;
+    font-size: 4em;
+    font-weight: bold;
+  }
+  .mainImage {
+    width: 100%;
+  }
+  .moreImage {
+    max-height: 120px;
+    cursor: pointer;
+    margin-top: 10px;
+  }

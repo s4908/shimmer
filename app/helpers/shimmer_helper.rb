@@ -1,0 +1,2 @@
+module ShimmerHelper
+end
