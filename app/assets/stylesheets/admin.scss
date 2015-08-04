@@ -11,28 +11,26 @@
  * file per style scope.
  *
  *= require_self
- *= require business-casual
  *= require shimmer
- *= require bs_process_bar
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  margin-top: 70px;
+}
 
-.productInfo > .title {
-   font-size: 2em;
+td {
+  vertical-align: middle !important;
 }
-.productInfo > .price {
-  font-family: 'Roboto',微軟正黑體,Helvetica,sans-serif;
-  font-size: 4em;
-  font-weight: bold;
-}
-.mainImage {
-  width: 100%;
-}
-.moreImage {
-  max-height: 120px;
-  cursor: pointer;
+
+dt {
   margin-top: 10px;
+  font-size: 16px;
+}
+
+dd {
+  font-size: 14px;
+  color: #555;
 }

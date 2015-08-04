@@ -1,0 +1,57 @@
+<h2>訂購資訊</h2>
+
+<h4>訂單狀態：<%= @order.status.humanize %></h4>
+<dl>
+  <dt>姓名</dt>
+  <dd><%= @order.name %></dd>
+  <dt>電話</dt>
+  <dd><%= @order.phone %></dd>
+  <dt>地址</dt>
+  <dd><%= @order.delivery_address %></dd>
+  <dt>備註</dt>
+  <dd><%= simple_format @order.note %></dd>
+</dl>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th></th>
+      <th>商品名稱</th>
+      <th>價格</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @order.order_items.includes(:product).each_with_index do |item, index| %>
+    <tr style="vertical-align: middle; height: 80px">
+
+      <td>
+        <%= image_tag item.product.main_image.image_url(:thumb), style: 'max-height: 70px; max-width: 100px ' %>
+      </td>
+      <td>
+        <%= item.product.title %>
+      </td>
+      <td> <%= item.quantity %> </td>
+      <td>
+        <%= number_to_currency(item.price, precision: 0) %> 
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="row" >
+  <table class=" pull-right total">
+    <tr>
+      <td><strong>小計：</strong></td>
+      <td><%= number_to_currency(@order.sub_total, precision: 0) %></td>
+    </tr>
+    <tr>
+      <td><strong>運費：</strong></td>
+      <td><%= number_to_currency(@order.shipping_fee, precision: 0) %></td>
+    </tr>
+    <tr>
+      <td><strong>總計：</strong></td>
+      <td><%= number_to_currency(@order.grand_total, precision: 0) %></td>
+    </tr>
+  </table>
+</div>

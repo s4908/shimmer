@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  STATUS = {placed: "訂單成立", shipping: "運送中", close: "關閉"}
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -14,7 +13,7 @@ class OrdersController < ApplicationController
   def checkout
     order = current_order
     order.update(order_params)
-    order.status = STATUS[:placed]
+    order.status = :in_progress
 
     if order.save!
       reset_order!

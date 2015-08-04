@@ -1,0 +1,12 @@
+
+<%= simple_form_for @product, url: url, :html => { :multipart => true } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description, as: :text %>
+  <%= simple_fields_for :product_attachments do |f| %>
+    <%= f.input :main_image, as: :file %>
+    <%= f.input :other_images, as: :file, input_html: {multiple: true} %>
+  <% end %>
+  <%= f.input :price %>
+  <%= f.input :category_id, as: :select, collection: Category.all.map{ |c| [c.title, c.id] } %>
+  <%= f.button :submit %>
+<% end %>

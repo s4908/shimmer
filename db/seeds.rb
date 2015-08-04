@@ -5,7 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-5.times do 
+Category.create(title: "Tops")
+
+10.times do 
   product = Product.create(
     title: "[#{Faker::Lorem.word.capitalize}] " << (Faker::Lorem.words(3).join(" ")).capitalize,
     description: Faker::Lorem.sentence(20),

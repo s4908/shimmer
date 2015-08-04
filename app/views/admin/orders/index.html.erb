@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>訂購者姓名</th>
+      <th>狀態</th>
+      <th>總金額</th>
+      <th>訂單成立時間</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td> <%= order.id %> </td>
+        <td> <%= order.name %> </td>
+        <td> <%= order.status %> </td>
+        <td> <%= order.grand_total %> </td>
+        <td> <%= order.created_at %> </td>
+        <td>
+          <%= link_to '詳細資訊', admin_order_path(order), class: 'btn btn-default' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

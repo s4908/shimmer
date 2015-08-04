@@ -6,4 +6,8 @@ class Product < ActiveRecord::Base
   validates :title, presence: true
   validates :category_id, presence: true
   validates :price, presence: true
+
+  def main_image
+    self.product_attachments.where(:image_type => 'main').first
+  end
 end

@@ -34,13 +34,10 @@ class ProductsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        redirect_to @product, notice: 'Product was successfully updated.'
-
-      else
-        render :edit
-      end
+    if @product.update(product_params)
+      redirect_to @product, notice: 'Product was successfully updated.'
+    else
+      render :edit
     end
   end
 

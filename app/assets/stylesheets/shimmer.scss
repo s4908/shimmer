@@ -1,3 +1,137 @@
 // Place all the styles related to the shimmer controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+  @font-face {
+    font-family: "vladmir script";
+    src: url(font_path("vlad.woff2"));
+  }
+
+  .brand-logo{
+    font-family: 'vladmir script';
+    font-size: 1.3em;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  #newNav ul.main li a {
+    font-size: 21px;
+    color: #5f5f5f;
+    text-transform: lowercase;
+  }
+  #newNav ul.main li a:hover,
+  #newNav ul.main li a.active {
+    color: #99cccc;
+  }
+  #newNav ul.main li a.active {
+    margin-bottom: -3px;  
+    border-bottom: 3px solid #666;
+  }
+  #newNav ul.main li.last {
+    right: 0;
+    margin: 0;
+    
+  }
+
+
+  .topBanner {
+  }
+  .topBanner .left {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+  .topBanner .topLeft {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+  }
+  .topBanner .cart {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  .topLeft {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+  }
+  .topLeftNav {
+      display: inline-block;
+      
+      margin-left: 20px;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      a {
+        color: #666;
+      }
+  }
+
+  @media screen and (max-width: 768px) {
+    .cart { display: none; }
+  }
+  @media screen and (min-width: 768px) {
+    #cart_link, #user_link { display: none; }
+  }
+  
+
+  .imageHolder {
+    
+    height: 300px;
+    text-align: center;
+    -border: black 1px solid;
+
+    margin: 0 auto;
+    
+  }
+  .imageHolder img {
+    vertical-align: middle;
+    max-width: 98%;
+    margin: 0;
+    height: 280px;
+
+  }
+  .imageHolder .helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  
+  .productTitle{
+    color: #000;
+    text-align: center;
+  }
+  .productPrice{
+    text-align: center;
+  }
+
+  .row-centered {
+      text-align:center;
+  }
+  .col-centered {
+      display:inline-block;
+      float:none;
+      /* reset the text-align */
+      text-align:left;
+      /* inline-block space fix */
+      margin-right:-4px;
+  }
+
+
+  .productInfo > .title {
+     font-size: 2em;
+  }
+  .productInfo > .price {
+    font-family: 'Roboto',微軟正黑體,Helvetica,sans-serif;
+    font-size: 4em;
+    font-weight: bold;
+  }
+  .mainImage {
+    width: 100%;
+  }
+  .moreImage {
+    max-height: 120px;
+    cursor: pointer;
+    margin-top: 10px;
+  }

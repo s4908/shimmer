@@ -3,6 +3,12 @@ Rails.application.routes.draw do
 
   get '/about_us' => 'shimmer#about_us'
 
+  resources :order_items
+  resources :product_attachments
+  resources :products
+
+  devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   resource :order, :only => [:show] do
     collection do
       get :fill_in_information
@@ -10,21 +16,17 @@ Rails.application.routes.draw do
       get :confirmed
     end
   end
-    
-
-  resources :order_items
-    # get 'order_items/create', :on => :collection
-    # get 'order_items/destroy', :on => :collection
-  devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
-  
-
-  resources :product_attachments
-
-  resources :products
 
   resources :categories, except: [:show] do
     get :new_arrival, :on => :collection    
     get ':category_name' , action: :show, :on => :collection
+  end
+
+
+  namespace :admin do
+    root 'products#index'
+    resources :products
+    resources :orders
   end
 
 

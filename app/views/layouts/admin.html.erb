@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>管理介面</title>
+  <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to '管理介面', admin_root_path, class: "navbar-brand"  %>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><%= link_to '商品列表', admin_products_path %></li>
+          <li><%= link_to '訂單管理', admin_orders_path %></li>
+          <li>
+            <% if user_signed_in? %>
+              <%= link_to '登出', destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to '登入', new_user_session_path %>
+            <% end %>
+          </li>
+        </ul>
+      </div><!-- /.nav-collapse -->
+      
+    </div><!-- /.container -->
+  </nav><!-- /.navbar -->
+  <div class="container">
+    <p class="label label-info"><%= flash[:notice] %></p>
+    <p class="label label-warning"><%= flash[:alert] %></p>
+    <p class="label label-danger"><%= flash[:error] %></p>
+    <%= yield %>
+  </div>
+
+  <br><br>
+</body>
+
+</html>

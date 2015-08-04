@@ -4,6 +4,8 @@ class Order < ActiveRecord::Base
 
   enum status: {temp: 0 , in_progress: 1, complete: 2}
 
+  scope :confirmed_orders, -> { where(status: [statuses[:in_progress], statuses[:complete]]) }
+
   def quantity
     self.order_items.size
   end
