@@ -51,7 +51,7 @@ end
 
 gem 'mysql2'
 
-gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootstrap-sass', '~> 3.3.5'
 
 gem 'carrierwave'
 gem 'rmagick'

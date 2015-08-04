@@ -4,8 +4,10 @@ class OrderItemsController < ApplicationController
     @order_item = @order.order_items.new(order_items_params)
     @order_item.price = Product.find(product_id).price
     @order.save
+
     session[:order_id] = @order.id
     flash[:notice] = "成功將商品加入購物籃"
+    
     redirect_to product_path(product_id)
   end
 

@@ -1,77 +1,22 @@
-<style>
-  .imageHolder {
-    width: 100%;
-    height: 300px;
-    text-align: center;
-    -border: black 1px solid;
-
-    margin: 0 auto;
-    
-  }
-  .imageHolder img {
-    vertical-align: middle;
-    max-width: 98%;
-    margin: 0;
-    max-height: 300px;
-
-  }
-  .imageHolder .helper{
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-    background-color: red;
-  }
-  
-  .productTitle{
-    color: #000;
-    text-align: center;
-  }
-  .productPrice{
-    text-align: center;
-  }
-
-</style>
 
 
-  <% if  @category %>
-  <!--   <% @category.products.includes(:product_attachments).reverse.each_slice(4) do |slice| %>
-      <div class="row" style="margin-bottom: 20px;">
-        <% slice.each do |product| %>
-          <div class="col-lg-3">
-            <%= link_to product_path(product) do %>
-              <div class="imageHolder">
-                <div class="helper"></div>
-                <%= image_tag product.product_attachments.first.image_url(:thumb) %><br>
-              </div>
-              <div class="productTitle"> <%= product.title %> </div>
-              <div class="productImage"> <%= number_to_currency(product.price, precision: 0) %> </div>
-            <% end %>
+<% if  @category %>
+  <% @category.products.includes(:product_attachments).reverse.each do |product| %>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-bottom: 20px">
+      <%= link_to product_path(product) do %>
+
+          <div class="imageHolder">
+            <div class="helper"></div>
+            <%= image_tag product.product_attachments.first.image_url(:thumb)  %><br>
           </div>
-        <% end %>
-      </div>
-    <% end %> -->
-    <div class="row" style="margin-bottom: 20px;">
-      <% @category.products.includes(:product_attachments).reverse.each do |product| %>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-bottom: 20px">
-          <%= link_to product_path(product) do %>
+          <div class="productTitle"> <%= product.title.truncate(28) %> </div>
+          <div class="productPrice"> <%= number_to_currency(product.price, precision: 0) %> </div>
 
-              <div class="imageHolder">
-                <div class="helper"></div>
-                <%= image_tag product.product_attachments.first.image_url(:thumb)  %><br>
-              </div>
-              <div class="productTitle"> <%= product.title.truncate(28) %> </div>
-              <div class="productPrice"> <%= number_to_currency(product.price, precision: 0) %> </div>
-
-          <% end %>
-        </div>
       <% end %>
     </div>
-  <% else %>
-    此分類沒有商品<br>
   <% end %>
+<% else %>
+  此分類沒有商品<br>
+<% end %>
 
-
-
-
-<br><br>
 

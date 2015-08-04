@@ -208,7 +208,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_shopping_cart (~> 0.2.1)
-  bootstrap-sass (~> 3.3.4)
+  bootstrap-sass (~> 3.3.5)
   byebug
   carrierwave
   coffee-rails (~> 4.1.0)

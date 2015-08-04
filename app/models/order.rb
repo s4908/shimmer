@@ -2,6 +2,8 @@ class Order < ActiveRecord::Base
   has_many :order_items
   belongs_to :user
 
+  enum status: {temp: 0 , in_progress: 1, complete: 2}
+
   def quantity
     self.order_items.size
   end
